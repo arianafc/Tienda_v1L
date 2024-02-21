@@ -1,3 +1,4 @@
+//informacion de la internacionalizacion
 package com.tienda;
 //imports relacionados al springframework
 import java.util.Locale;
