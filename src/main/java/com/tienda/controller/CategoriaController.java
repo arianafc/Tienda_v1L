@@ -28,7 +28,7 @@ public class CategoriaController {
         return "/categoria/listado";
     }
     
-     @GetMapping("/nuevo")
+    @GetMapping("/nuevo")
     public String categoriaNuevo(Categoria categoria) {
         return "/categoria/modifica";
     }
