@@ -32,12 +32,11 @@ public class Producto implements Serializable{
     private int existencias;
     private String rutaImagen;
     private boolean activo;
-    
+   
     //muchos a uno
     @ManyToOne //aqui se realiza la asociacion con la otra tabla
     @JoinColumn(name="id_categoria")
     Categoria categoria;
-    
     
     public Producto(){
         
