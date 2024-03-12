@@ -26,17 +26,20 @@ public class Producto implements Serializable{
     @Column(name="id_producto")
     
     private Long idProducto;
+//    private Long idCategoria;
     private String descripcion;
     private String detalle;
     private double precio;
     private int existencias;
     private String rutaImagen;
     private boolean activo;
-   
+    
+        
     //muchos a uno
     @ManyToOne //aqui se realiza la asociacion con la otra tabla
     @JoinColumn(name="id_categoria")
     Categoria categoria;
+
     
     public Producto(){
         
