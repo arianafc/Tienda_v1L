@@ -20,7 +20,7 @@ public class PruebasController {
     @Autowired
     private CategoriaService categoriaService;
 
-    @GetMapping("/listado")
+    @GetMapping("/listado") //Listado para traernos la informacion para las asociaciones de categoria y productos
     public String listado(Model model) {
         var productos = productoService.getProductos(false);
         var categorias = categoriaService.getCategorias(false);
@@ -30,13 +30,32 @@ public class PruebasController {
         return "/pruebas/listado";
     }
 
-    @GetMapping("/listado/{idCategoria}")
+    @GetMapping("/listado/{idCategoria}") //Traernos todas las categorias para utilizarlas en el tab de asociaciones
     public String listado(Model model, Categoria categoria) {
-//        var productos = categoriaService.getCategoria(categoria).getProductos();
+        var productos = categoriaService.getCategoria(categoria).getProductos(); //asociacion de productos con categorias
         var categorias = categoriaService.getCategorias(false);
-//        model.addAttribute("productos", productos);
-//        model.addAttribute("totalProductos", productos.size());
+        model.addAttribute("productos", productos);
+        model.addAttribute("totalProductos", productos.size());
         model.addAttribute("categorias", categorias);
         return "/pruebas/listado";
     }
+    
+    @GetMapping("/listado2") //para la parte de consultas
+    public String listado2(Model model) {
+        var productos = productoService.getProductos(false);
+        model.addAttribute("productos", productos);
+        model.addAttribute("totalProductos", productos.size());
+        return "/pruebas/listado2";
+    }
+    
+    @PostMapping("/query1") //agregando el codigo para el filtro creado de precioBetween
+    public String consultaQuery1(@RequestParam(value = "precioInf") double precioInf,
+            @RequestParam(value = "precioSup") double precioSup, Model model) {
+        var productos = productoService.findByPrecioBetweenOrderByDescripcion(precioInf, precioSup);
+        model.addAttribute("productos", productos);
+        model.addAttribute("precioInf", precioInf);
+        model.addAttribute("precioSup", precioSup);
+        return "/pruebas/listado2";
+    }
+    
 }

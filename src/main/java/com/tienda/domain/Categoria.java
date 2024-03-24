@@ -22,7 +22,7 @@ public class Categoria implements Serializable { //serializacion porque se va al
     private boolean activo;
 
     @OneToMany //uno a muchos
-    @JoinColumn(name="id_categoria")
+    @JoinColumn(name="id_categoria", updatable=false) //no ocupo que actualice la tabla, solo join (traerme la info), aqui se usa el fk para unir
     List<Producto> productos;
     
     public Categoria() {
