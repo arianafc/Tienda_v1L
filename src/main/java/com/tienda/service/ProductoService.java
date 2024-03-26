@@ -25,4 +25,8 @@ public interface ProductoService {
     public void delete(Producto producto);
     
     public List<Producto> findByPrecioBetweenOrderByDescripcion(double precioInf, double precioSup);
+    
+    //Lista de productos utilizando consultas con JPQL    
+    public List<Producto> metodoJPQL(double precioInf, double precioSup);
+    public List<Producto> metodoNativo(double precioInf, double precioSup);
 }
